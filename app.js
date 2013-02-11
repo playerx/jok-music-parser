@@ -45,4 +45,4 @@ http.createServer(function(req, res){
     
     res.end('Channels count:' + channelsCount);
     
-}).listen(process.env.PORT)
+}).listen(process.env.PORT, ' http://jok-musicparser.herokuapp.com')
