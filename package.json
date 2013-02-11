@@ -1,0 +1,16 @@
+{
+  "name": "jok-musicparser",
+  "version": "0.1.0",
+  "author": "Jok.ge <contact@jok.ge>",
+  "description": "Online radio channels parser",
+  "scripts": {
+    "start": "node ./app"
+  },
+  "dependencies" : {
+    "colors"   :  "*"
+  }, 
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8.2"
+  }
+}
