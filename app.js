@@ -40,9 +40,3 @@ function CreateStream(id, url) {
         console.log(id, error);
     });
 }
-
-http.createServer(function(req, res){
-    
-    res.end('Channels count:' + channelsCount);
-    
-}).listen(process.env.PORT, ' http://jok-musicparser.herokuapp.com')
