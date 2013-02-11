@@ -3,6 +3,7 @@
 var radio = require('./radio-stream')
 var http = require('http')
 
+var channelsCount = 0;
 
 http.get('http://api.jok.ge/musicchannel/0/getall', function (res) {
 
@@ -16,7 +17,8 @@ http.get('http://api.jok.ge/musicchannel/0/getall', function (res) {
         var channels = JSON.parse(st);
 
         console.log('Channels loaded: ', channels.length);
-
+        channelsCount = channels.length;
+        
         for (var i = 0; i < channels.length; i++) {
             CreateStream(channels[i].ID, channels[i].Source);
         }
@@ -38,3 +40,9 @@ function CreateStream(id, url) {
         console.log(id, error);
     });
 }
+
+http.createServer(function(req, res){
+    
+    res.end('Channels count:' + channelsCount);
+    
+}).listen(process.env.PORT)
