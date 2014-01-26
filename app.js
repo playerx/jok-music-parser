@@ -38,7 +38,7 @@ function startReadingMetadata(id, url) {
 }
 
 
-$.get(API_ROOT_URL + '/Music/Channels', function (res) {
+$.get(API_ROOT_URL + '/Music/Channels/?includeOfflines=true', function (res) {
 
     if (!res || !res.IsSuccess) return;
 
