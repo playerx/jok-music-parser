@@ -1,4 +1,0 @@
-{"ts":1360569414335,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
-{"contributors":[],"silentsave":false,"ts":1360569420127,"patch":[[{"diffs":[[1,"web: node app"]],"start1":0,"start2":0,"length1":0,"length2":13}]],"length":13,"saved":false}
-{"ts":1360569526500,"patch":[[{"diffs":[[0,"w"],[-1,"eb"],[1,"orker"],[0,": node "],[-1,"app"],[1,"web.js"]],"start1":0,"start2":0,"length1":13,"length2":19}]],"length":19,"saved":false}
-{"ts":1360569536213,"patch":[[{"diffs":[[0,"ode "],[-1,"web"],[1,"app"],[0,".js"]],"start1":9,"start2":9,"length1":10,"length2":10}]],"length":19,"saved":false}

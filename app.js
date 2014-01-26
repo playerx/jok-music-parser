@@ -1,39 +1,31 @@
 
-var radio = require('radio-stream');
+var radio = require('./radio-stream');
 var $ = require('jQuery').create();
 
 var API_ROOT_URL = 'http://api.jok.io';
 
 
-function startReadingMetadata(id, url, nextTimeoutDelayCount) {
+function startReadingMetadata(id, url) {
     var stream = radio.createReadStream(url);
 
     stream.on("metadata", function (metadata) {
 
-        nextTimeoutDelayCount = 1;
-
         var title = radio.parseMetadata(metadata).StreamTitle;
         if (!title || title == '') return;
 
-        console.log(metadata);
-
-        $.get(API_ROOT_URL + '/Music/BroadcastTrack/?channelID=' + id + '&trackInfo=' + title, function () {
-            console.log(id, title, 'success');
-        });
-    });
-
-    stream.on("close", function (info) {
-        console.log(id, 'close', info, nextTimeoutDelayCount);
-        reconnect();
+        $.post(API_ROOT_URL + '/Music/BroadcastTrack/?channelID=' + id + '&trackInfo=' + title);
     });
 
     stream.on("error", function (info) {
-        console.log(id, 'error', info, nextTimeoutDelayCount);
-        reconnect();
+
+        $.post(API_ROOT_URL + '/Music/ChannelOffline/?channelID=' + id);
     });
 
 
     function reconnect() {
+
+        stream = null;
+
         setTimeout(function () {
 
             if (nextTimeoutDelayCount < 30)
@@ -41,7 +33,7 @@ function startReadingMetadata(id, url, nextTimeoutDelayCount) {
 
             startReadingMetadata(id, url, nextTimeoutDelayCount);
 
-        }, nextTimeoutDelayCount * 1000);
+        }, nextTimeoutDelayCount * 1);
     }
 }
 
@@ -52,7 +44,9 @@ $.get(API_ROOT_URL + '/Music/Channels', function (res) {
 
     for (var i = 0; i < res.Data.length; i++) {
 
-        startReadingMetadata(res.Data[i].ID, res.Data[i].Source, 1);
+        //if (res.Data[i].ID != 43 && res.Data[i].ID != 91) continue;
+
+        startReadingMetadata(res.Data[i].ID, res.Data[i].Source);
     }
 })
 
