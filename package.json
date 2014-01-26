@@ -10,6 +10,7 @@
     "xmlhttprequest": "*",
     "jsdom": "*",
     "jQuery": "*",
+    "radio-stream": "*",
     "colors":  "*"
   }, 
   "license": "MIT",
